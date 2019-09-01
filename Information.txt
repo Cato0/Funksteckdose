@@ -1,0 +1,26 @@
+Waves Platform (2016)
+
+- Dezentralized Exchange
+- Platform Client
+- Cross Blockchain Cryptocurrency Capabilities
+- large Bandwidth & fast Transaction / Conformations
+
+Proof of Make
+
+Proof of State (Leasing)
+- you need another Persons Adress
+- you need to Stake some amount of your Coins
+
+Create Token ???
+- it creates its own Coins 
+- fee to create Tokens costs 1 Waves
+- 
+
+Smart Contracts
+- they have Turing Complete and Non-Turing Complete Contracts 
+
+Token
+- 
+- 
+- 
+

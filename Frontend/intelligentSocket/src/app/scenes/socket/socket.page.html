@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title *ngIf="socket">
+            Steckdose {{socket.id}} 
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <socket-info *ngIf="socket" [energyToToken]="asset.exchangeRate" [(socket)]="socket"></socket-info>
+
+    <ion-content class="progressBar" *ngIf="loadingStarted && socket.status === 'CHARGING'">
+        <ion-label class="label"> Progress: {{ progressValue }}% </ion-label>
+        <mat-progress-bar
+            class="bar"
+            [color]='primary'
+            [mode]="indeterminate"
+            [value]="progressValue">{{ progressValue }}%
+        </mat-progress-bar>
+        
+        <ion-button *ngIf="loadingStarted && socket.status === 'CHARGING'" (click)="stopLoadingProcess()">Beende Ladevorgang</ion-button>
+    </ion-content>
+    <ion-button *ngIf="loadingReady && !loadingStarted && socket.status !== 'CHARGING_FINISHED'" (click)="startLoadingProcess()">Starte Ladevorgang</ion-button>
+
+    <ion-card> 
+        <ion-card-content>
+            Vorgang: <br />
+            1. Geben Sie an, wie viel Energie sie maximal laden möchten.<br />
+            2. Nutzen Sie Waves Keeper um den Vorgang so angenehm wie möglich zu machen.<br />
+            3. Melden Sie sich mit dem Waves Keeper an.<br />
+            4. Senden Sie die angezeigte Menge an Token auf den für diesen Vorgang generierten MultiSignature-Account.<br />
+            5. Signieren Sie die vorgeschlagene Transaktion, bei der die von Ihnen eingezahlte Menge Token auf den Account des Händlers übertragen wird.<br />
+            6. Starten Sie den Ladevorgang.<br />
+            7. Beenden Sie den Ladevorgang wann immer Sie wollen. Er wird automatisch beendet, wenn die maximal gebuchte Energiemenge erreicht wurde.<br />
+            8. Sollte nicht alle Energie genutzt werden, haben Sie die Möglichkeit eine neue Transaktion zu signieren, bei der Sie den restlichen Betrag für die nicht genutzte Energie zurückerstattet bekommen.<br />
+            
+        </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="socket && socket.status === 'AVAILABLE'">
+        <ion-card *ngIf="customer">
+            <!-- <ion-card-header>
+                <ion-card-title *ngIf="!multiSignatureAccount">Bitte gib deine Addresse und deinen PublicKey an</ion-card-title>
+                <ion-card-title *ngIf="multiSignatureAccount">Deine Addresse und dein PublicKey</ion-card-title>
+            </ion-card-header> -->
+            <ion-card-content>
+                <!-- <ion-item>
+                    <ion-label position="stacked">Addresse:</ion-label>
+                    <ion-input [readonly]="multiSignatureAccount" type="text" [(ngModel)]="customer.address"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">PublicKey:</ion-label>
+                    <ion-input [readonly]="multiSignatureAccount" type="text" [(ngModel)]="customer.publicKey"></ion-input>
+                </ion-item> -->
+                <!-- <ion-button [hidden]="started" (click)="useManual()">Manueller Vorang</ion-button> -->
+                <ion-button [hidden]="started" (click)="useWavesKeeper()">Waves Keeper</ion-button>
+            </ion-card-content>            
+        </ion-card>
+        
+        <ion-card *ngIf="multiSignatureAccount">
+            <ion-card-header>
+                <ion-card-title>Daten für den gemeinsamen Account.</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item>
+                    <ion-label position="stacked">Addresse:</ion-label>
+                    <ion-input readonly="true" type="text" [(ngModel)]="multiSignatureAccount.address"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">PublicKey:</ion-label>
+                    <ion-input readonly="true" type="text" [(ngModel)]="multiSignatureAccount.publicKey"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="stacked">Seed:</ion-label>
+                    <ion-input readonly="true" type="text" [(ngModel)]="multiSignatureAccount.seed"></ion-input>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+        
+        <ion-card *ngIf="compiledScript">
+            <ion-card-header>
+                <ion-card-title>Script</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item>
+                    <ion-textarea readonly="true" [value]="compiledScript.script"></ion-textarea>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+</ion-content>
+  

@@ -1,0 +1,7 @@
+{
+    "tokensForCustomer": 0.005,
+    "tokensForTrader": 0.005,
+    "backupTransaction": "complete transaction as json string",
+    "customerAddress": "",
+    "multiSignaturePublicKey": ""
+}

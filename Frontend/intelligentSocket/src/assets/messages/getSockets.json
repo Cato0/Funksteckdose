@@ -1,0 +1,26 @@
+[
+    { 
+        "id": 1, 
+        "status": "AVAILABLE" 
+    }, 
+    { 
+        "id": 2, 
+        "status": "UNAVAILABLE" 
+    }, 
+    { 
+        "id": 3, 
+        "status": "UNAVAILABLE" 
+    }, 
+    { 
+        "id": 4, 
+        "status": "AVAILABLE" 
+    }, 
+    { 
+        "id": 5, 
+        "status": "UNAVAILABLE" 
+    }, 
+    { 
+        "id": 6, 
+        "status": "AVAILABLE" 
+    }
+] 

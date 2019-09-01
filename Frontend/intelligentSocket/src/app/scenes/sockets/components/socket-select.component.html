@@ -1,0 +1,20 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Auswahl einer Steckdose</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let socket of sockets; let i = index">
+          <ion-card [ngClass]="{'highlight' : socket.id === choice, 'not-highlight' : socket.id !== coice}" (click)="select(socket)">
+            <ion-card-content>
+              <ion-label>ID: {{socket.id}}</ion-label><br />
+              <ion-label>Status: {{socket.status}}</ion-label>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

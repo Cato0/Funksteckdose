@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Bestellung erfolgreich
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    Transaktions-ID: {{ transactionId }} <br />
+    
+    <div *ngIf="multiSignatureAccount">
+        Multi-Signature-Account:<br />
+        Addresse: {{ multiSignatureAccount.address }}<br />
+        Public-Key: {{ multiSignatureAccount.publicKey }}
+    </div>
+
+    <ion-textarea [hidden]="!backup" readonly="true" [ngModel]="backupTransfer"></ion-textarea>
+    <ion-textarea [hidden]="!backup" [ngModel]="backupTransferSigned"></ion-textarea>
+    <ion-button [hidden]="!backup && !backupTransferSigned" (click)="parseBackup()">Transaktion eingeben</ion-button>
+
+    <ion-button *ngIf="loadingReady && !loadingStarted" (click)="startLoadingProcess()">Starte Ladevorgang</ion-button>
+    <ion-button *ngIf="loadingStarted" (click)="stopLoadingProcess()">Beende Ladevorgang</ion-button>
+</ion-content>
+  

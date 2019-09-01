@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "status": "AVAILABLE",
+    "energyToToken": 0.001,
+    "customerAddress": "",
+    "customerPublicKey": "",
+    "alreadyCharged": 0,
+    "energyToCharge": 0
+}

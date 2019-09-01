@@ -1,0 +1,28 @@
+<ion-card>
+  <ion-card-header>
+      <ion-card-title>Auswahl einer Steckdose</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content *ngIf="socket">
+    <ion-item>
+      <ion-label>ID: {{socket.id}}</ion-label>
+      <ion-label>Status: {{socket.status}}</ion-label>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4>
+          <ion-label position="stacked">Energie [Wh]</ion-label>
+          <ion-input [readonly]="socket.status === 'UNAVAILABLE'" min="1" [(ngModel)]="socket.energy" type="number"></ion-input>
+        </ion-col>
+        <ion-col col-4>
+          =>
+        </ion-col>
+        <ion-col col-4>
+          <ion-label position="stacked">Token</ion-label>
+          <ion-input readonly="true" [ngModel]="socket.energy * energyToToken" type="number" inputmode="numeric"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

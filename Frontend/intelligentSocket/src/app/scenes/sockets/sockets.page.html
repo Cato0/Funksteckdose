@@ -1,0 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Intelligente Steckdosen
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="sockets">
+  <socket-select [sockets]="sockets"></socket-select>
+</ion-content>
